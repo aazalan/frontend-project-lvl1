@@ -1,40 +1,43 @@
-import readlineSync from 'readline-sync';
+import { greetingMesssage, gamePlay, randomNumber, randomMaths, congratulation } from "./index.js";
 
-export default () =>{
-console.log('Welcome to the Brain Games!');
-const name = readlineSync.question('May I have your name? ');
-console.log(`Hello, ${name}!`);
-console.log('Answer "yes" if the number is even, otherwise answer "no".');
-
-let counter = 0;
-
-while (counter < 3) {
-	    let randomNumber = Math.floor(Math.random() * 100);
-	    console.log('Question: '+ randomNumber);
-	    const answer = readlineSync.question('Your answer: ');
-
-	    if (randomNumber % 2 === 0) {
-		            if (answer == 'yes') {
-				                console.log('Correct!');
-				            }
-		            else {
-				                console.log(`'${answer}' is wrong answer ;(. Correct answer was 'yes'.\nLet's try again, ${name}`);
-				                break;
-				            } 
-		        }
-
-	    if (randomNumber % 2 !== 0) {
-		            if (answer == 'no') {
-				                console.log('Correct!');
-				            }
-		            else {
-				                console.log(`'${answer}' is wrong answer ;(. Correct answer was 'no'.\nLet's try again, ${name}`);
-				                break;
-				            }
-		        }
-	    counter += 1;
+export const evenGame = () => {
+    const name = greetingMesssage();
+	console.log('Answer "yes" if the number is even, otherwise answer "no".');
+    let counter = 0;
+    let isItCorrectAnswer = true;
+    while (counter < 3 && isItCorrectAnswer == true) {
+        const expression = randomNumber();
+        const correctAnswer = (expression % 2) === 0 ? 'yes' : 'no';
+        isItCorrectAnswer = gamePlay(expression, correctAnswer, name);
+        counter += 1;
+    }
+    congratulation(counter, name);
 }
-if (counter === 3) {
-	    console.log(`Congratulations, ${name}!`);
-}
+
+
+export const calcGame = () => {
+    const name = greetingMesssage();
+    console.log('What is the result of the expression?');
+    let counter = 0;
+    let isItCorrectAnswer = true;
+    
+    while (counter < 3 && isItCorrectAnswer == true) {
+        const firstNumber = randomNumber();
+        const secondNumber = randomNumber();
+        const mathSign = randomMaths();
+        const strExpression = `${firstNumber} ${mathSign} ${secondNumber}`;
+        let correctAnswer = 0;
+        if (mathSign === '-') {
+            correctAnswer = firstNumber - secondNumber;
+        }
+        if (mathSign === '+') {
+            correctAnswer = firstNumber + secondNumber;
+        }
+        if (mathSign === '*') {
+            correctAnswer = firstNumber * secondNumber;
+        }
+        isItCorrectAnswer = gamePlay(strExpression, String(correctAnswer), name);
+        counter += 1;
+    }
+    congratulation(counter, name);
 }
