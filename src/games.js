@@ -84,7 +84,7 @@ export const progressionGame = () => {
     progressionArray[missedNumberIndex] = '..';
     let expression = '';
     for (let j = 0; j <= arrayLength; j += 1) {
-      expression = `${expression} ${progressionArray[j]}`;
+      expression = `${expression}${progressionArray[j]} `;
     }
     isItCorrectAnswer = gamePlay(expression, String(missedNumber), name);
     counter += 1;
