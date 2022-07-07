@@ -29,6 +29,6 @@ export const randomMaths = () => {
 
 export const congratulation = (counter, name) => {
   if (counter === 3) {
-    console.log(`Congratulation, ${name}!`);
+    console.log(`Congratulations, ${name}!`);
   }
 };
