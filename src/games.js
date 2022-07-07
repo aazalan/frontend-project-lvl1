@@ -5,6 +5,7 @@ export const evenGame = () => {
 	console.log('Answer "yes" if the number is even, otherwise answer "no".');
     let counter = 0;
     let isItCorrectAnswer = true;
+
     while (counter < 3 && isItCorrectAnswer == true) {
         const expression = randomNumber();
         const correctAnswer = (expression % 2) === 0 ? 'yes' : 'no';
@@ -84,6 +85,28 @@ export const progressionGame = () => {
             expression = `${expression} ${progressionArray[j]}`
         }
         isItCorrectAnswer = gamePlay(expression, String(missedNumber), name);
+        counter += 1;
+    }
+    congratulation(counter, name);
+}
+
+export const primeGame = () => {
+    const name = greetingMesssage();
+    console.log('Answer "yes" if given number is prime. Otherwise answer "no".');
+    let counter = 0;
+    let isItCorrectAnswer = true;
+
+    while (counter < 3 && isItCorrectAnswer == true) {
+        const expression = randomNumber();
+        let correctAnswer = '';
+        for (let i = 2; i < expression; i += 1) {
+            if (expression % i === 0) {
+                correctAnswer = 'no';
+                break;
+            }
+            correctAnswer = 'yes';
+        }
+        isItCorrectAnswer = gamePlay(expression, correctAnswer, name);
         counter += 1;
     }
     congratulation(counter, name);
