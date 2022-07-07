@@ -20,7 +20,7 @@ export const gamePlay = (expression, correctAnswer, name) => {
 	}
 }
 
-export const randomNumber = () => Math.floor(Math.random() * 100);
+export const randomNumber = (range = 100) => Math.floor(Math.random() * range);
 
 export const randomMaths = () => {
     const mathsArray = ['+', '-', '*'];

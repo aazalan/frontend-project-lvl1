@@ -14,7 +14,6 @@ export const evenGame = () => {
     congratulation(counter, name);
 }
 
-
 export const calcGame = () => {
     const name = greetingMesssage();
     console.log('What is the result of the expression?');
@@ -59,6 +58,32 @@ export const gcdGame = () => {
             }
         }
         isItCorrectAnswer = gamePlay(expression, String(greatestDivisor), name);
+        counter += 1;
+    }
+    congratulation(counter, name);
+}
+
+export const progressionGame = () => {
+    const name = greetingMesssage();
+    console.log('What number is missing in the progression?');
+    let counter  = 0;
+    let isItCorrectAnswer = true;
+
+    while (counter < 3 && isItCorrectAnswer == true) {
+        const progressionArray = [randomNumber()];
+        const arrayLength = randomNumber(5) + 5;
+        const progressionStep = randomNumber(9) + 1;
+        for (let i = 0; i < arrayLength; i += 1){
+            progressionArray.push(progressionArray[i] + progressionStep);
+        }
+        const missedNumberIndex = randomNumber(arrayLength);
+        const missedNumber = progressionArray[missedNumberIndex];
+        progressionArray[missedNumberIndex] = '..';
+        let expression = '';
+        for (let j = 0; j <= arrayLength; j += 1) {
+            expression = `${expression} ${progressionArray[j]}`
+        }
+        isItCorrectAnswer = gamePlay(expression, String(missedNumber), name);
         counter += 1;
     }
     congratulation(counter, name);
