@@ -60,6 +60,9 @@ export const gcdGame = () => {
         greatestDivisor = Math.max(greatestDivisor, i);
       }
     }
+    if (firstNumber === 0 || secondNumber === 0) {
+      greatestDivisor = Math.max(firstNumber, secondNumber);
+    }
     isItCorrectAnswer = gamePlay(expression, String(greatestDivisor), name);
     counter += 1;
   }
