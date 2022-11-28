@@ -1,3 +1,5 @@
+# Brain-games
+
 Project includes 5 CLI games.
 
 Installation:
